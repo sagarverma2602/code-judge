@@ -1,0 +1,71 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+
+}
+.submissions {
+    margin: 20px;
+  }
+  
+  .get-users {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .get-users:hover {
+    background-color: #0056b3;
+  }
+  
+  .submission-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  .table-header {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-row:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .user-row:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .username, .language, .submission-time, .stdin, .code, .output, .status {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .stdin, .code, .output {
+    max-width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .status {
+    color: #007bff;
+  }
+  
+  .status.failed {
+    color: #dc3545;
+  }
+  
+  .status.success {
+    color: #28a745;
+  }
+  
