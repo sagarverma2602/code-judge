@@ -13,6 +13,7 @@ const ViewSubmissions = () => {
     return date.toLocaleString(); 
   };
   useEffect( () => {
+    console.log(import.meta.env.VITE_DB_URL)
     const fetchData = async () => {
       const response = await fetch(import.meta.env.VITE_DB_URL as string)
       const data = await response.json()
