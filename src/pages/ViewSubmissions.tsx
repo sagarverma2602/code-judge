@@ -10,6 +10,12 @@ const ViewSubmissions = () => {
     }
     return text;
   };
+  const truncateOutput=(text:String)=>{
+    if (text.length > 20) {
+      return text.slice(0, 20) + '...';
+    }
+    return text;
+  }
   const formatDate = (dateString:string) => {
     const date = new Date(dateString);
     return date.toLocaleString(); 
@@ -52,7 +58,7 @@ const ViewSubmissions = () => {
               <td className="code" dangerouslySetInnerHTML={{
                 __html: truncateText(user.source_code).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')
               }}></td>
-              <td className="output" dangerouslySetInnerHTML={{ __html: truncateText(user.output).replace(/\n/g, '<br>') }}></td>
+              <td className="output" dangerouslySetInnerHTML={{ __html: truncateOutput(user.output).replace(/\n/g, '<br>') }}></td>
               <td className="status">{user.output_status}</td>
             </tr>
           )
