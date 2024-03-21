@@ -37,7 +37,7 @@ const ViewSubmissions = () => {
         <th>Output</th>
         <th>Status</th>
       </tr>
-      {
+      {users &&
         users.map((user: any) => {
           return (
             <tr className="user-row" key={user.id}>
