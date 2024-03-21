@@ -5,7 +5,7 @@ const ViewSubmissions = () => {
   const navigate=useNavigate()
   const [users, setUsers] = useState([])
   const truncateText = (text:String) => {
-    if (text.length > 1000) {
+    if (text.length > 100) {
       return text.slice(0, 100) + '...';
     }
     return text;
