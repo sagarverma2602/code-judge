@@ -10,11 +10,11 @@ const ViewSubmissions = () => {
   };
   const formatDate = (dateString:string) => {
     const date = new Date(dateString);
-    return date.toLocaleString(); // Adjust formatting as needed
+    return date.toLocaleString(); 
   };
   useEffect( () => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/api/users')
+      const response = await fetch(import.meta.env.VITE_DB_URL as string)
       const data = await response.json()
       
       setUsers(data.data)
