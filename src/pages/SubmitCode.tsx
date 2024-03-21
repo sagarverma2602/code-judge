@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { v4 } from 'uuid'
+import {useNavigate} from 'react-router-dom'
 
 const SubmitCode = () => {
+  const navigate=useNavigate()
   const languagecode = { "Python": 71, "Java": 62, "C++": 54, "Javascript": 63 }
   const [output, setOutput] = useState({
     stdout: '',
@@ -84,6 +86,9 @@ const SubmitCode = () => {
   }, [output])
   return (
     <div>
+      <div onClick={()=> navigate('/view-submissions')}>
+        View Submissions
+      </div>
       <div>
         Username: <input type="text" placeholder="Enter Username" value={userObject.username} onChange={(event) => setUserObject({ ...userObject, username: event.target.value })} />
       </div>

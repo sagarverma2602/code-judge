@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 
 const ViewSubmissions = () => {
+  const navigate=useNavigate()
   const [users, setUsers] = useState([])
   const truncateText = (text:String) => {
     if (text.length > 1000) {
@@ -25,7 +27,9 @@ const ViewSubmissions = () => {
   }, [])
   return (
     <div className="submissions">
-  <button className="get-users" onClick={() => { console.log(users) }}>Get Users</button>
+      <div onClick={()=> navigate('/')}>
+        New Submission
+      </div>
   <table className="submission-table">
     <tbody>
       <tr className="table-header" key={2}>
