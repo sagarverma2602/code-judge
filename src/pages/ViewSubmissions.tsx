@@ -25,11 +25,9 @@ const ViewSubmissions = () => {
     const fetchData = async () => {
       const response = await fetch(import.meta.env.VITE_DB_URL as string)
       const data = await response.json()
-      console.log(data.data)
-      Object.keys(data.data).map((key: any) => {
-        console.log(data.data[key].username)
-      })
-      setUsers(data.data)
+      console.log(data)
+      
+      setUsers(data)
     }
     fetchData()
 
@@ -50,7 +48,7 @@ const ViewSubmissions = () => {
         <th>Output</th>
         <th>Status</th>
       </tr>
-      {Object.keys(users).map((key: any) => {
+      {/* {Object.keys(users).map((key: any) => {
         const user=users[key]
           return (
             <tr className="user-row" key={user.id}>
@@ -66,6 +64,21 @@ const ViewSubmissions = () => {
             </tr>
           )
         })
+      } */}
+      {users.map((user: any) => {
+        return (
+          <tr className="user-row" key={user.id}>
+            <td className="username">{user.username}</td>
+            <td className="language">{user.language}</td>
+            <td className="submission-time">{formatDate(user.date)}</td>
+            <td className="stdin" dangerouslySetInnerHTML={{ __html: truncateText(user.input).replace(/\n/g, '<br>') }}></td>
+            <td className="code" dangerouslySetInnerHTML={{
+              __html: truncateText(user.code).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')
+            }}></td>
+            <td className="output" dangerouslySetInnerHTML={{ __html: truncateOutput(user.stdout).replace(/\n/g, '<br>') }}></td>
+            <td className="status">{user.status}</td>
+          </tr>
+        )})
       }
     </tbody>
   </table>
