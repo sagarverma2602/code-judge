@@ -5,6 +5,7 @@ const ViewSubmissions = () => {
   const navigate=useNavigate()
   const [users, setUsers] = useState([])
   const truncateText = (text:String) => {
+    console.log(text)
     if (text.length > 100) {
       return text.slice(0, 100) + '...';
     }
@@ -24,7 +25,10 @@ const ViewSubmissions = () => {
     const fetchData = async () => {
       const response = await fetch(import.meta.env.VITE_DB_URL as string)
       const data = await response.json()
-      
+      console.log(data.data)
+      Object.keys(data.data).map((key: any) => {
+        console.log(data.data[key].username)
+      })
       setUsers(data.data)
     }
     fetchData()
@@ -37,7 +41,7 @@ const ViewSubmissions = () => {
       </div>
   <table className="submission-table">
     <tbody>
-      <tr className="table-header" key={2}>
+      <tr className="table-header" key="cococo">
         <th>Username</th>
         <th>Language</th>
         <th>Time of submission</th>
@@ -46,19 +50,19 @@ const ViewSubmissions = () => {
         <th>Output</th>
         <th>Status</th>
       </tr>
-      {users &&
-        users.map((user: any) => {
+      {Object.keys(users).map((key: any) => {
+        const user=users[key]
           return (
             <tr className="user-row" key={user.id}>
               <td className="username">{user.username}</td>
-              <td className="language">{user.pref_language}</td>
+              <td className="language">{user.language}</td>
               <td className="submission-time">{formatDate(user.date)}</td>
-              <td className="stdin" dangerouslySetInnerHTML={{ __html: truncateText(user.stdin).replace(/\n/g, '<br>') }}></td>
+              <td className="stdin" dangerouslySetInnerHTML={{ __html: truncateText(user.input).replace(/\n/g, '<br>') }}></td>
               <td className="code" dangerouslySetInnerHTML={{
-                __html: truncateText(user.source_code).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')
+                __html: truncateText(user.code).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')
               }}></td>
-              <td className="output" dangerouslySetInnerHTML={{ __html: truncateOutput(user.output).replace(/\n/g, '<br>') }}></td>
-              <td className="status">{user.output_status}</td>
+              <td className="output" dangerouslySetInnerHTML={{ __html: truncateOutput(user.stdout).replace(/\n/g, '<br>') }}></td>
+              <td className="status">{user.status}</td>
             </tr>
           )
         })

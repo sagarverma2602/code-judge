@@ -15,7 +15,7 @@ const SubmitCode = () => {
     username: '',
     language: '',
     input: '',
-    code: ''
+    code: '',
   })
   const API_KEY = import.meta.env.VITE_API_KEY as string;
   const handleSubmit = async () => {
@@ -61,7 +61,7 @@ const SubmitCode = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...userObject, id: v4(), ...output })
+        body: JSON.stringify({ ...userObject, id: v4(), ...output,date:new Date() })
       }).then(() => {
         alert('Submitted Successfully')
         setUserObject({
@@ -69,7 +69,7 @@ const SubmitCode = () => {
           username: '',
           language: '',
           input: '',
-          code: ''
+          code: '',
         })
         setOutput({
           stdout: '',
