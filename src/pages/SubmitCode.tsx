@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { v4 } from 'uuid'
 import {useNavigate} from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 
 const SubmitCode = () => {
   const navigate=useNavigate()
@@ -129,7 +130,7 @@ const SubmitCode = () => {
       <div>
         <input type='button' onClick={handleSubmit} value="Submit Your Code" />
       </div>
-
+          <Analytics/>
     </div>
   )
 }
